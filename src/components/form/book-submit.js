@@ -4,7 +4,7 @@ class Form extends React.PureComponent {
   render() {
     return (
       <>
-        <h2>Book Submit</h2>
+        <h2>Add New Book</h2>
         <form action="#">
           <div className="form-group">
             <input
