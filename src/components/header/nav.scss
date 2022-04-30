@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
-
 $text-color: #000;
 $padding: 30px;
 $font: 500 1.2rem 'Poppins',
-sans-serif;
-
+  sans-serif;
 
 * {
   margin: 0;
@@ -26,7 +24,7 @@ sans-serif;
   padding: $padding 50px;
 }
 
-.navigation>h1 {
+.navigation > h1 {
   font-size: 1.5rem;
 }
 
