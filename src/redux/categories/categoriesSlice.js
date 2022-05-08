@@ -4,7 +4,7 @@ const initialState = [];
 const CategoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case STATUS: {
-      return action.payload;
+      return 'Page Under Construction';
     }
     default: {
       return state;
@@ -12,6 +12,6 @@ const CategoryReducer = (state = initialState, action) => {
   }
 };
 
-export const status = () => ({ type: STATUS, payload: 'Page Under Construction' });
+export const status = () => ({ type: STATUS });
 
 export default CategoryReducer;

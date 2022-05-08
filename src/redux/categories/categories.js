@@ -1,11 +1,16 @@
 import React from 'react';
-import NavBar from '../../components/header/navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import { status } from './categoriesSlice';
 
-const Categories = () => (
-  <div className="container">
-    <NavBar />
-    <button type="button">Check status</button>
-  </div>
-);
+const Categories = () => {
+  const text = useSelector((state) => state.categories);
+  const dispatch = useDispatch();
 
+  return (
+    <div className="container">
+      <button type="button" onClick={() => dispatch(status())}>Check status</button>
+      <p>{text}</p>
+    </div>
+  );
+};
 export default Categories;

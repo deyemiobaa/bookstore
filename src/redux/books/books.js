@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Book from '../../components/book/book-item';
-import NavBar from '../../components/header/navigation';
 import Form from '../../components/form/book-submit';
+import { selectAllBooks } from './booksSlice';
 
-const Books = () => (
-  <div className="container">
-    <NavBar />
-    <div className="book-list">
-      <ul>
-        <Book
-          author="J.K. Rowling"
-          title="Harry Potter and the Chamber of Secrets"
-        />
-      </ul>
-    </div>
-    <Form />
-  </div>
-);
+const Books = () => {
+  const allBooks = useSelector(selectAllBooks);
+  useEffect(() => {
+  }, []);
+  return (
+    <>
+      <div className="book-list">
+        <ul>
+          {allBooks.map((book) => (
+            <Book
+              id={book.id}
+              key={book.id}
+              author={book.author}
+              title={book.title}
+              category={book.category}
+            />
+          ))}
+        </ul>
+      </div>
+      <Form />
+    </>
+  );
+};
 
 export default Books;
