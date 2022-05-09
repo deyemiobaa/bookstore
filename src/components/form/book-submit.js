@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../../redux/books/booksSlice';
 
 const Form = () => {
+  const [newBook, setNewBook] = useState({});
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    setNewBook({ ...newBook, [name]: value });
+  };
+
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const author = e.target.elements.author.value;
-    const title = e.target.elements.title.value;
-    const category = e.target.elements.category.value;
-    dispatch(addBook({ author, title, category }));
+    dispatch(addBook(newBook));
+    setNewBook({
+      title: '',
+      author: '',
+      category: '',
+    });
   };
+
+  const { title, author, category } = newBook;
   return (
     <div>
       <h2>Add New Book</h2>
@@ -21,6 +32,8 @@ const Form = () => {
             className="form-control"
             name="title"
             placeholder="Title"
+            value={title}
+            onChange={handleChange}
             required
           />
         </div>
@@ -30,6 +43,8 @@ const Form = () => {
             className="form-control"
             name="author"
             placeholder="Author"
+            value={author}
+            onChange={handleChange}
             required
           />
         </div>
@@ -39,6 +54,8 @@ const Form = () => {
             className="form-control"
             name="category"
             placeholder="Category"
+            value={category}
+            onChange={handleChange}
             required
           />
         </div>
