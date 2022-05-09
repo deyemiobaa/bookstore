@@ -1,7 +1,7 @@
 import React from 'react';
-import Book from '../../components/book/book-item';
-import NavBar from '../../components/header/navigation';
-import Form from '../../components/form/book-submit';
+import Book from '../book/book-item';
+import NavBar from '../header/navigation';
+import Form from '../form/book-submit';
 
 const Books = () => (
   <div className="container">

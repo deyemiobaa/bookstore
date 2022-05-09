@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../../components/header/navigation';
+import NavBar from '../header/navigation';
 
 const Categories = () => (
   <div className="container">
