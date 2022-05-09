@@ -1,34 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../../redux/books/booksSlice';
 
-class Form extends React.PureComponent {
-  render() {
-    return (
-      <>
-        <h2>Add New Book</h2>
-        <form action="#">
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              placeholder="Title"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="author"
-              placeholder="Author"
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Add Book
-          </button>
-        </form>
-      </>
-    );
-  }
-}
+const Form = () => {
+  const [newBook, setNewBook] = useState({});
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    setNewBook({ ...newBook, [name]: value });
+  };
+
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addBook(newBook));
+    setNewBook({
+      title: '',
+      author: '',
+      category: '',
+    });
+  };
+
+  const { title, author, category } = newBook;
+  return (
+    <div>
+      <h2>Add New Book</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            name="title"
+            placeholder="Title"
+            value={title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            name="author"
+            placeholder="Author"
+            value={author}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            name="category"
+            placeholder="Category"
+            value={category}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Add Book
+        </button>
+      </form>
+    </div>
+  );
+};
 
 export default Form;

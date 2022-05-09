@@ -6,21 +6,11 @@ $font: 500 1.2rem 'Poppins',
   sans-serif;
 
 * {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  box-sizing: border-box;
-  text-decoration: none;
   font: $font;
   color: $text-color;
 }
 
 .navigation {
-  display: flex;
-  width: 100%;
-  position: fixed;
-  top: 0;
   padding: $padding 50px;
 }
 
