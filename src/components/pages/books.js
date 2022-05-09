@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Book from '../../components/book/book-item';
-import Form from '../../components/form/book-submit';
-import { selectAllBooks } from './booksSlice';
+import Book from '../book/book-item';
+import Form from '../form/book-submit';
+import { selectAllBooks } from '../../redux/books/booksSlice';
 
 const Books = () => {
   const allBooks = useSelector(selectAllBooks);
