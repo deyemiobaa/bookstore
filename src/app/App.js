@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Categories from '../redux/categories/categories';
-import Books from '../redux/books/books';
+import Categories from '../components/pages/categories';
+import Books from '../components/pages/books';
 import './App.scss';
 
 class AppBody extends React.PureComponent {
