@@ -1,41 +1,40 @@
-const ADD_BOOK = 'bookstore/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
+import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = [
   {
-    id: 1, author: 'author 1', title: 'Book 1', category: 'Category 1',
+    id: uuidv4(), author: 'author 1', title: 'Book 1', category: 'Category 1',
   },
   {
-    id: 2, author: 'author 2', title: 'Book 2', category: 'Category 2',
+    id: uuidv4(), author: 'author 2', title: 'Book 2', category: 'Category 2',
   },
   {
-    id: 3, author: 'author 3', title: 'Book 3', category: 'Category 3',
+    id: uuidv4(), author: 'author 3', title: 'Book 3', category: 'Category 3',
   },
 ];
-const BookReducer = (allBooks = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK: {
-      const id = allBooks.length + 1;
-      const newBook = {
+
+const BookstoreSlice = createSlice({
+  name: 'bookstore/books',
+  initialState,
+  reducers: {
+    ADD_BOOK: (state, action) => {
+      const id = uuidv4();
+      state.push({
         ...action.payload,
         id,
-      };
-      return [...allBooks, newBook];
-    }
-    case REMOVE_BOOK: {
-      return allBooks.filter((book) => book.id !== action.payload);
-    }
-    default: {
-      return allBooks;
-    }
-  }
-};
+      });
+    },
+    REMOVE_BOOK: (state, action) => {
+      const bookToRemove = state.findIndex((book) => book.id === action.payload);
+      state.splice(bookToRemove, 1);
+    },
+  },
+});
 
 // action creators
-export const addBook = (book) => ({ type: ADD_BOOK, payload: book });
-export const removeBook = (id) => ({ type: REMOVE_BOOK, payload: id });
+export const { ADD_BOOK, REMOVE_BOOK } = BookstoreSlice.actions;
 
 // selectors
 export const selectAllBooks = (state) => state.allBooks;
 
-export default BookReducer;
+export default BookstoreSlice.reducer;

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../../redux/books/booksSlice';
+import { ADD_BOOK } from '../../redux/books/booksSlice';
 
 const Form = () => {
-  const [newBook, setNewBook] = useState({});
+  const [newBook, setNewBook] = useState({
+    title: '',
+    author: '',
+    category: '',
+  });
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -13,7 +17,7 @@ const Form = () => {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addBook(newBook));
+    dispatch(ADD_BOOK(newBook));
     setNewBook({
       title: '',
       author: '',
