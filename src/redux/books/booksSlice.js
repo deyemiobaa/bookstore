@@ -1,41 +1,64 @@
-const ADD_BOOK = 'bookstore/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
-const initialState = [
-  {
-    id: 1, author: 'author 1', title: 'Book 1', category: 'Category 1',
-  },
-  {
-    id: 2, author: 'author 2', title: 'Book 2', category: 'Category 2',
-  },
-  {
-    id: 3, author: 'author 3', title: 'Book 3', category: 'Category 3',
-  },
-];
-const BookReducer = (allBooks = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK: {
-      const id = allBooks.length + 1;
-      const newBook = {
-        ...action.payload,
-        id,
-      };
-      return [...allBooks, newBook];
-    }
-    case REMOVE_BOOK: {
-      return allBooks.filter((book) => book.id !== action.payload);
-    }
-    default: {
-      return allBooks;
-    }
-  }
-};
+const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
+const appId = 'IGqCjYSRuuahNBqX1j4U';
 
-// action creators
-export const addBook = (book) => ({ type: ADD_BOOK, payload: book });
-export const removeBook = (id) => ({ type: REMOVE_BOOK, payload: id });
+export const loadBooks = createAsyncThunk(
+  'bookstore/books/LOAD_BOOKS', async () => {
+    const response = await fetch(`${baseURL}/${appId}/books`);
+    const books = await response.json();
+    const formatedBooksObject = [Object.keys(books).map((key) => ({
+      id: key,
+      ...books[key][0],
+    }))];
+
+    return formatedBooksObject;
+  },
+);
+
+export const addBook = createAsyncThunk(
+  'bookstore/books/ADD_BOOK', async ({ title, author, category }, thunkAPI) => {
+    const newBook = {
+      item_id: uuidv4(),
+      title,
+      author,
+      category,
+    };
+    await fetch(`${baseURL}/${appId}/books`, {
+      method: 'POST',
+      body: JSON.stringify(newBook),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => thunkAPI.dispatch(loadBooks()));
+    const books = thunkAPI.getState().allBooks;
+    return books;
+  },
+);
+
+export const deleteBook = createAsyncThunk(
+  'bookstore/books/DELETE_BOOK', async (bookId, thunkAPI) => {
+    await fetch(`${baseURL}/${appId}/books/${bookId}`, {
+      method: 'DELETE',
+    }).then(() => thunkAPI.dispatch(loadBooks()));
+    const books = thunkAPI.getState().allBooks;
+    return books;
+  },
+);
+
+export const BookstoreSlice = createSlice({
+  name: 'bookstore/books',
+  initialState: [],
+  reducers: {},
+  extraReducers: {
+    [loadBooks.fulfilled]: (state, action) => action.payload[0],
+    [addBook.fulfilled]: (state, action) => action.payload,
+    [deleteBook.fulfilled]: (state, action) => action.payload,
+  },
+});
 
 // selectors
 export const selectAllBooks = (state) => state.allBooks;
 
-export default BookReducer;
+export default BookstoreSlice.reducer;

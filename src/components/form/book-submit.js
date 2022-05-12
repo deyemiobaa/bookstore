@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux';
 import { addBook } from '../../redux/books/booksSlice';
 
 const Form = () => {
-  const [newBook, setNewBook] = useState({});
+  const [newBook, setNewBook] = useState({
+    title: '',
+    author: '',
+    category: '',
+  });
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
