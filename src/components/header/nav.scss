@@ -1,42 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-$text-color: #000;
-$padding: 30px;
-$font: 500 1.2rem 'Poppins',
-  sans-serif;
+$text-color: #0290ff;
+$font: "Montserrat", sans-serif;
 
-* {
-  font: $font;
+.header {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  padding: 24px 4%;
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  column-gap: 40px;
+  font-family: $font;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
   color: $text-color;
 }
 
-.navigation {
-  padding: $padding 50px;
-}
-
-.navigation > h1 {
-  font-size: 1.5rem;
+nav {
+  display: flex;
+  column-gap: 40px;
 }
 
 .nav-links {
-  display: flex;
-  align-items: center;
-  column-gap: 20px;
+  opacity: 1;
+  color: #121212;
+  font-size: 0.813rem;
+  letter-spacing: 1.9px;
+  text-decoration: none;
 }
 
-.links:hover {
-  text-decoration: underline;
-}
-
-.user-icon {
+.icon-button {
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #fff;
-  color: #000;
-  font-size: 1.5rem;
+  align-items: center;
   cursor: pointer;
+  width: 2.813rem;
+  height: 2.813rem;
+  border-radius: 50%;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  color: $text-color;
+  justify-self: end;
+}
+
+.primary-color {
+  color: $text-color;
+  font-size: 30px;
 }
