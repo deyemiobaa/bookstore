@@ -7,7 +7,7 @@
 - Frameworks: React.js
 - Technologies used: Webpack, API, Redux-Toolkit
 
-##### View the deployed version [here](https://dev--jovial-bonbon-ff2eb8.netlify.app/)
+#### View the deployed version [here](https://jovial-bonbon-ff2eb8.netlify.app/)
 
 ### Prerequisites
 
