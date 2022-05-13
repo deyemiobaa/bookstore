@@ -5,12 +5,13 @@ import './nav.scss';
 class NavBar extends React.PureComponent {
   render() {
     return (
-      <header className="navigation">
-        <h1>BookStore CMS</h1>
-        <nav className="nav-links">
-          <Link to="/" className="links">Books</Link>
-          <Link to="/categories" className="links">Categories</Link>
+      <header className="header">
+        <h1>Bookstore CMS</h1>
+        <nav>
+          <Link to="/" className="nav-links">BOOKS</Link>
+          <Link to="/categories" className="nav-links">CATEGORIES</Link>
         </nav>
+        <button className="icon-button" type="button"><span className="material-icons primary-color">person</span></button>
       </header>
     );
   }

@@ -7,8 +7,8 @@ const Categories = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="container">
-      <button type="button" onClick={() => dispatch(STATUS())}>Check status</button>
+    <div className="categories">
+      <button className="primary-button" type="button" onClick={() => dispatch(STATUS())}>CHECK STATUS</button>
       <p>{text}</p>
     </div>
   );

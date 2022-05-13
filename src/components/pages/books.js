@@ -8,8 +8,8 @@ const Books = () => {
   const allBooks = useSelector(selectAllBooks);
   return (
     <>
-      <div className="book-list">
-        <ul>
+      <div className="book-container">
+        <ul className="book-list">
           {allBooks.map((book) => (
             <Book
               id={book.id}
