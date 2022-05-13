@@ -5,8 +5,9 @@
 
 - Major languages:  CSS, JavaScript
 - Frameworks: React.js
-- Technologies used: Webpack, API, Redux
+- Technologies used: Webpack, API, Redux-Toolkit
 
+##### View the deployed version [here](https://dev--jovial-bonbon-ff2eb8.netlify.app/)
 
 ### Prerequisites
 
